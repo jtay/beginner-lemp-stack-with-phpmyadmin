@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - ${HTTP_PORTS}
+    volumes:
+      - ./${PROJECT_ROOT}:/var/www/${PROJECT_ROOT}
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - lemp-network
+
+  php:
+    build:
+      context: ./php
+    volumes:
+      - ./${PROJECT_ROOT}:/var/www/${PROJECT_ROOT}
+    networks:
+      - lemp-network
+
+  mysql:
+    image: mysql:latest
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASS}
+    ports:
+      - ${MYSQL_PORTS}
+    networks:
+      - lemp-network
+
+  phpmyadmin:
+    platform: linux/amd64/v8
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: ${MYSQL_HOSTNAME}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - ${PMA_PORTS}
+    depends_on:
+      - mysql
+    networks:
+      - lemp-network
+
+networks:
+  lemp-network:
+    driver: bridge
