@@ -1,95 +1,69 @@
-# Docker-LEMP
+# LEMP Stack Quickstart: Dockerized Development Environment
 
-A ready-to-use Docker configuration for setting up a LEMP (Linux, Nginx, MySQL, PHP) stack. It is tailored for quick deployment of development environments, ensuring consistency and ease of use.
+Welcome to this instructional guide, aimed at providing an accessible entry point for individuals who are just starting their journey in web development. It focuses on setting up a LEMP stack, which includes Linux, Nginx, MySQL, and PHP, using Docker. This repository is designed to make the process of configuring a web server environment as straightforward as possible, catering to the needs of beginners looking for a practical approach to learn and implement these technologies. By emphasizing simplicity and practicality, it serves as a foundational resource for acquiring the skills necessary to manage web servers and develop web applications.
 
+## Key Features
 
-## Features
+- **Fast Setup**: Deploy a complete LEMP stack with a single command.
+- **Nginx**: Pre-configured Nginx server for serving web content efficiently.
+- **PHP Support**: PHP environment ready with essential extensions.
+- **MySQL**: Integrated MySQL for your database needs.
+- **Flexible Configuration**: Easily customizable `.env` and Nginx settings.
+- **Docker Compose**: Streamlined service orchestration and management.
 
-- **Nginx**: Latest Nginx server setup for handling web requests.
-- **PHP**: PHP environment configured with necessary extensions and settings.
-- **MySQL**: MySQL database for data storage.
-- **Easy Configuration**: Environment variables and configurations can be easily adjusted in the `.env` file and Nginx configuration.
-- **Docker-Compose Integration**: Simplified orchestration and management of services using Docker Compose.
+> ⚠️ **Development Use Only**: This setup is optimized for development environments. It lacks security and performance configurations for production use.
 
----
+## Getting Started
 
-> ##### ⚠️ Do Not Use in a Production Environment
-> This Docker-LEMP stack is configured for local development environments only. It lacks several critical security measures, optimisations, and configurations necessary for a safe and efficient production environment. Do not deploy this setup in a production scenario.
+Follow these simple steps to get your LEMP stack running:
 
----
-
-## Setup
-
-1. **Clone the Repository**: Start by cloning this repository to your local machine.
-   
+1. **Clone This Repository**
    ```bash
-   git clone https://github.com/jtay/docker-lemp
-   ```
-   ```
+   git clone https://github.com/jtay/docker-lemp.git
    cd docker-lemp
    ```
 
-2. **Environment Configuration**: Copy the `.env.sample` file to a new file named `.env`.
-
+2. **Set Up Environment**
+   Copy `.env.sample` to `.env` and adjust settings to fit your project.
    ```bash
    cp .env.sample .env
    ```
 
-   > ##### 🔧 Customisation 
-   >Edit the `.env` file to set your project configurations like ports, hostname, and MySQL settings.
-
-3. **Build and Run**: Use Docker Compose to build and run the containers.
-
+3. **Launch the Stack**
+   Use Docker Compose to build and start your services.
    ```bash
-   docker-compose build --no-cache
-   ```
-   ```
    docker-compose up -d
    ```
-4.  **Stop Containers**: Use Docker Compose to stop the containers.
-    ```bash
-    docker-compose down
-    ```
-## Usage
 
-After setting up, your LEMP stack will be running with:
-
-- **Nginx** serving your web content on the configured HTTP port (default port `80`).
-- **PHP** for processing PHP scripts.
-- **MySQL** accessible on the configured MySQL port (default port `3306`).
-- **PHPMyAdmin** for easily accessing MySQL via a web interface (default `http://localhost:8080`).
-
-Access the sample application via the `src/public`. You can start adding your PHP files to the `src/public` directory and they will be served by Nginx at [http://localhost/](http://localhost/)
-
-## Default Environment Variables
-
-Accessible and editable via `.env` the root of the repository
-
-**Nginx + PHP**
-- `PROJECT_ROOT=src/` *The root of your PHP project*
-- `WEB_ROOT=src/public/` *Directory index.php file would typically sit*
+4. 🎉 **Congratulations!** Your web server can be viewed at [http://localhost/](http://localhost/)
 
 
-- `HTTP_HOSTNAME=localhost`*The hostname given to Nginx*
-- `HTTP_PORTS=80:80` *Ports that Nginx exposes itself to*
+### Stopping the web server
+   ```bash
+   docker-compose down
+   ```
 
-**PHPMyAdmin + MySQL**
-- `PMA_HOSTNAME=phpmyadmin` *Default PHPMyAdmin hostname*
-- `PMA_PORTS=8080:80` *Default PHPMyAdmin ports*
+## How to Use
 
+Your LEMP environment is now ready:
 
-- `MYSQL_HOSTNAME=mysql` *Default MySQL hostname `mysql` (instead of localhost!)*
-- `MYSQL_PORTS=3306:3306` *Default MySQL ports `3306`*
-- `MYSQL_ROOT_PASSWORD=tiger` *Default MySQL root user password `tiger`*
-- `MYSQL_USER=user` *Default MySQL username `user`*
-- `MYSQL_PASS=pass` *Default MySQL password `pass`*
-- `MYSQL_DATABASE=docker` *Default MySQL database name `docker`*
+- **Web Server**: Nginx is serving on port `80`.
+- **PHP Processing**: PHP is configured and ready.
+- **Database**: MySQL is available on port `3306`.
+- **Database Management**: PHPMyAdmin accessible at `http://localhost:8080`.
 
+Start by adding PHP files to `src/public` to have them served by Nginx at [http://localhost/](http://localhost/).
 
+## Configuration Details
+
+Your environment settings are easily adjustable in the `.env` file at the root:
+
+- **Project and Web Root**: Set the paths for your PHP project and where your `index.php` resides.
+- **Service Hostnames and Ports**: Configure hostnames and ports for Nginx, PHPMyAdmin, and MySQL.
+- **Database Settings**: Default MySQL credentials and database name provided for immediate use.
+
+> ⚠️ **Note on Security**: This setup does not include HTTPS. It's intended for local testing and not recommended for handling sensitive information.
 
 ---
 
-> #### ⚠️ **No HTTPS**
-> This configuration does not include HTTPS setup. It is intended for local development and testing purposes only. Without HTTPS, the traffic is not encrypted, which is not suitable for handling sensitive data or any production-level deployment.
-
----
+This repository was created to simplify the early stages of web development for newcomers, providing an easy way to set up a LEMP stack with Docker. Whether you're learning web development or need a quick environment for testing, this resource is tailored to get you started with minimal hassle.
