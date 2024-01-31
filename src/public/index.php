@@ -34,7 +34,7 @@
         <p> Hello world <p>
         <ul class="horizontal-list">
             <li>
-                <a href="https://github.com/jtay/docker-lemp" target="_blank">Star on GitHub</a>
+                <a href="https://github.com/jtay/beginner-lemp-stack-with-phpmyadmin" target="_blank">Star on GitHub</a>
             </li>
             <li>
                 <a href="https://jaydon-dev.co.uk" target="_blank">Say hello!</a>
