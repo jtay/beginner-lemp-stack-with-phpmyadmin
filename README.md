@@ -19,8 +19,8 @@ Follow these simple steps to get your LEMP stack running:
 
 1. **Clone This Repository**
    ```bash
-   git clone https://github.com/jtay/docker-lemp.git
-   cd docker-lemp
+   git clone https://github.com/jtay/beginner-lemp-stack-with-phpmyadmin.git
+   cd beginner-lemp-stack-with-phpmyadmin
    ```
 
 2. **Set Up Environment**
